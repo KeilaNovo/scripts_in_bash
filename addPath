@@ -1,0 +1,16 @@
+#-------
+# DESC: Add directories to the PATH
+# ARGS:
+#  1 - Add directory
+#  2 - We usethe term "delante" to put it forward and "detras" to put it behind it.
+#-------
+añadirpath() {
+  if ! echo $PATH | egrep "(^|:)$1(:|\$)" > /dev/null ; then
+    if [[ $2 = "delante" ]]; then
+      PATH="$1:$PATH"
+    elif [[ $2 = "detras" ]]; then
+      PATH="$PATH:$1"
+    fi
+    export PATH
+  fi
+}
